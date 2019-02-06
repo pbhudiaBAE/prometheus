@@ -21,6 +21,15 @@ function showUnhealthy(_, container) {
 }
 
 function init() {
+
+  $("#showTargets :input").change(function() {
+    const target = $(this).attr("id");
+    if (localStorage.getItem(key)=="true"){
+      $(".table-container").each(showUnhealthy);
+    }
+  });
+  
+
   $("button.targets").click(function () {
     const tableTitle = $(this).closest("h2").find("a").attr("id");
 
@@ -47,6 +56,8 @@ function init() {
       $(".table-container").each(showAll);
     } else if (target === "unhealthy-targets") {
       $(".table-container").each(showUnhealthy);
+      let key = "IsItUnhealthy";
+      localStorage.setItem(key,"true");
     }
   });
 }
